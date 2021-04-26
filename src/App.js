@@ -6,12 +6,17 @@ import githubIcon from "./img/github.svg";
 function App() {
 
   const [curfewData, setCurfewData] = useState(getCurfewData())
+  const msUntilNextMinute = 60000 - (new Date().getTime() % 60000)
+
+  const minutes = curfewData.minutesUntilCurfew.toString().padStart(2, '0')
+  const seconds = minutes === '60' ? '00' : Math.round(msUntilNextMinute / 1000).toString().padStart(2, '0')
 
   useEffect(() => {
-    const msUntilNextMinute = 60000 - (new Date().getTime() % 60000)
+    const msUntilNextSecond = 1000 - new Date().getMilliseconds();
+
     setTimeout(() => {
       setCurfewData(getCurfewData())
-    }, msUntilNextMinute)
+    }, msUntilNextSecond)
   }, [curfewData])
 
   return (
@@ -19,7 +24,7 @@ function App() {
       <span className="curfew-status">{curfewData.status}</span>
       {
         curfewData.minutesUntilCurfew !== -1 ?
-          <span className='curfew-countdown'>00:{curfewData.minutesUntilCurfew.toString().padStart(2, '0')}</span> :
+          <span className='curfew-countdown'>{minutes}:{seconds}</span> :
           ''
       }
       <span className="curfew-end-time">{curfewData.detail}</span>
