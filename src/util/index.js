@@ -103,7 +103,7 @@ export function getCurfewData() {
         const endHour = currentCurfew.end.hour()
         const endMinute = currentCurfew.end.minute()
         const nowMinute = now.minute()
-        const alreadyEnded = endHour < nowHour || (endHour === nowHour && endMinute < nowMinute)
+        const alreadyEnded = endHour < nowHour || (endHour === nowHour && endMinute <= nowMinute)
         if (alreadyEnded) {
           curfewData = new CurfewData(CURFEW_STATUSES.movementAllowed, nextCurfewDetail())
         } else {
