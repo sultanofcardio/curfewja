@@ -92,10 +92,13 @@ export function getCurfewData() {
     curfewData = new CurfewData(CURFEW_STATUSES.active, `Curfew ends ${relativeMomentString(currentCurfew.previousEnd)}`)
   } else {
     const hoursUntilCurfew = currentCurfew.start.diff(now, 'hours', true)
-    if (hoursUntilCurfew > 1) {
+    if (hoursUntilCurfew > 2) {
       curfewData = new CurfewData(CURFEW_STATUSES.movementAllowed, `Curfew starts ${relativeMomentString(currentCurfew.start)}`)
-    } else if (hoursUntilCurfew > 0 && hoursUntilCurfew <= 1) {
-      const minutesUntilCurfew = currentCurfew.start.diff(now, 'minutes')
+    } else if (hoursUntilCurfew > 0 && hoursUntilCurfew <= 2) {
+      let minutesUntilCurfew = -1
+      if(hoursUntilCurfew <= 1) {
+        minutesUntilCurfew = currentCurfew.start.diff(now, 'minutes')
+      }
       curfewData = new CurfewData(CURFEW_STATUSES.startingSoon, `Curfew starts ${relativeMomentString(currentCurfew.start)}`, minutesUntilCurfew)
     } else {
       // Check if the curfew already ended
