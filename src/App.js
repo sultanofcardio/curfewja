@@ -1,6 +1,7 @@
 import './App.css';
 import {getCurfewData} from "./util";
 import {useEffect, useState} from "react";
+import githubIcon from "./img/github.svg";
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
       }
       <span className="curfew-end-time">{curfewData.detail}</span>
       {/*<button className="curfew-schedule-btn">Curfew schedule</button>*/}
+      <a className={'github-icon'} href="https://github.com/sultanofcardio/curfewja" target="_blank" rel="noreferrer">
+        <img src={githubIcon} alt="GitHub link" />
+      </a>
     </div>
   );
 }
