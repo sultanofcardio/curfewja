@@ -1,0 +1,66 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.curfew-active {
+  background: #C32828;
+}
+
+.movement-allowed, .no-curfew {
+  background: #318448;
+}
+
+.almost-curfew {
+  background: #C38528;
+}
+
+.curfew-schedule {
+  background: #3777A6;
+}
+
+.curfew-status {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 84px;
+  text-align: center;
+}
+
+.curfew-end-time {
+  margin-top: 16px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.curfew-countdown {
+  font-family: 'Digital Numbers', sans-serif;
+  font-size: 140pt;
+  min-height: 148px;
+}
+
+.curfew-schedule-btn {
+  margin-top: 16px;
+
+  background: #0094FF;
+  color: white;
+  width: 166px;
+  height: 49px;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
