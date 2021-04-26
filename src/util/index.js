@@ -13,8 +13,9 @@ export const CURFEW_STATUSES = {
  * @return {Curfew}
  */
 function getCurrentCurfew() {
-  const today = moment().utcOffset(-5).day()
-  return data.find(curfew => curfew.date.day() - today === 0)
+  window.moment = moment
+  const today = moment().utcOffset(-5).format('YYYYMMDD')
+  return data.find(curfew => curfew.date.format('YYYYMMDD') === today)
 }
 
 /**
