@@ -8,8 +8,8 @@ function App() {
   const [curfewData, setCurfewData] = useState(getCurfewData())
   const msUntilNextMinute = 60000 - (new Date().getTime() % 60000)
 
-  const minutes = curfewData.minutesUntilCurfew.toString().padStart(2, '0')
-  const seconds = minutes === '60' ? '00' : Math.round(msUntilNextMinute / 1000).toString().padStart(2, '0')
+  const minutes = (curfewData.minutesUntilCurfew % 60).toString().padStart(2, '0')
+  let seconds = (Math.round(msUntilNextMinute / 1000) % 60).toString().padStart(2, '0')
 
   useEffect(() => {
     const msUntilNextSecond = 1000 - new Date().getMilliseconds();
