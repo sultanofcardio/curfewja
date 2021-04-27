@@ -97,7 +97,8 @@ export function getCurfewData() {
     } else if (hoursUntilCurfew > 0 && hoursUntilCurfew <= 2) {
       let minutesUntilCurfew = -1
       if(hoursUntilCurfew <= 1) {
-        minutesUntilCurfew = currentCurfew.start.diff(now, 'minutes')
+        minutesUntilCurfew = Math.floor(currentCurfew.start.diff(now, 'minutes', true))
+        console.log(minutesUntilCurfew)
       }
       curfewData = new CurfewData(CURFEW_STATUSES.startingSoon, `Curfew starts ${relativeMomentString(currentCurfew.start)}`, minutesUntilCurfew)
     } else {
