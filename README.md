@@ -12,10 +12,4 @@ Curfew JA gives some information about the current curfew conditions in Jamaica 
 ![](/screencaps/starting-soon.png)
 ![](/screencaps/movement-allowed.png)
 ![](/screencaps/no-curfew.png)
-
-## Coming soon
-
-View upcoming curfew schedules
-
 ![](/screencaps/schedule.png)
-![](/screencaps/schedule-no-restrictions.png)
