@@ -6,7 +6,7 @@ import {getCurfewData, getCurrentCurfew} from "../util";
 export const Countdown = () => {
   const {setCurfewData} = useContext(Context)
   const curfew = getCurrentCurfew()
-  const [offset, setOffset] = useState(curfew?.start?.diff(moment().utcOffset(-5), 'seconds'))
+  const [offset, setOffset] = useState(curfew?.start?.diff(moment().utcOffset(-5), 'seconds') + 1)
 
   useEffect(() => {
     const msUntilNextSecond = 1000 - new Date().getMilliseconds();
