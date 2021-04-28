@@ -19,7 +19,7 @@ export const Countdown = () => {
     }
   }, [offset])
 
-  if (curfew === null || (offset / 60) > 60) {
+  if (curfew === null || (offset / 60) > 60 || offset <= 0) {
     return (<></>)
   }
 
