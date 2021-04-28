@@ -1,4 +1,4 @@
-import {getCurfewData} from "./util";
+import {getCurfewData} from "./index";
 import {createContext, useReducer} from "react";
 
 const actions = {

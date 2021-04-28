@@ -1,7 +1,7 @@
-import {Context} from "../context";
+import {Context} from "../../util/context";
 import {useContext, useEffect, useState} from "react";
 import moment from "moment";
-import {getCurfewData, getCurrentCurfew} from "../util";
+import {getCurfewData, getCurrentCurfew} from "../../util";
 
 export const Countdown = () => {
   const {setCurfewData} = useContext(Context)
@@ -25,8 +25,6 @@ export const Countdown = () => {
 
   const minutes = Math.floor(offset / 60).toFixed(0).padStart(2, '0')
   const seconds = (offset % 60).toString().padStart(2, '0')
-
-  console.log("Offset:", offset, "Minutes:", minutes, "Seconds:", seconds)
 
   return (<span className='curfew-countdown'>{minutes}:{seconds}</span>)
 }

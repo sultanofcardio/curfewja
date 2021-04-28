@@ -10,11 +10,20 @@ export const CURFEW_STATUSES = {
 }
 
 /**
+ * Find a curfew for a particular date. If there are multiple curfews on this date, this functions returns
+ * the first one
+ * @param {Date} date
+ * @return {Curfew}
+ */
+export function findCurfew(date) {
+  return data.find(curfew => curfew.date.format('YYYYMMDD') === moment(date).format('YYYYMMDD'))
+}
+
+/**
  * @return {Curfew}
  */
 export function getCurrentCurfew() {
-  const today = moment().utcOffset(-5).format('YYYYMMDD')
-  return data.find(curfew => curfew.date.format('YYYYMMDD') === today)
+  return findCurfew(moment().utcOffset(-5).toDate())
 }
 
 /**
@@ -23,6 +32,8 @@ export function getCurrentCurfew() {
  * @return {Curfew}
  */
 export function getPrevCurfew(curfew) {
+  if (!curfew) return null
+
   return [...data].filter(it => it.date.isBefore(curfew.date))
     .sort((a, b) => {
       return a.date.format('YYYYMMDD') - b.date.format('YYYYMMDD')
@@ -46,7 +57,7 @@ function getNextCurfew(curfew) {
  * @param {moment.Moment} other
  * @return string
  */
-function relativeMomentString(other) {
+export function relativeMomentString(other) {
   /**
    * @type string
    */

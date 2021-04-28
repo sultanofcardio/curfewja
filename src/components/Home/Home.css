@@ -1,6 +1,6 @@
 .App {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,9 +53,10 @@
 
   background: #0094FF;
   color: white;
+  text-decoration: none;
   width: 166px;
   height: 49px;
-  padding: 14px 16px;
+  padding: 8px 10px;
   border: none;
   border-radius: 8px;
   display: flex;
@@ -66,7 +67,7 @@
 }
 
 .github-icon {
-  position: fixed;
+  position: absolute;
   cursor: pointer;
   text-decoration: none;
   color: white;

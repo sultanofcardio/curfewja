@@ -1,10 +1,11 @@
-import './App.css';
+import './Home.css';
 import {useContext} from "react";
-import githubIcon from "./img/github.svg";
-import {Countdown} from "./components/Countdown";
-import {Context} from "./context";
+import githubIcon from "../../img/github.svg";
+import {Countdown} from "./Countdown";
+import {Context} from "../../util/context";
+import {Link} from "react-router-dom";
 
-function App() {
+function Home() {
 
   const {state: {curfewData}} = useContext(Context)
 
@@ -13,7 +14,7 @@ function App() {
       <span className="curfew-status">{curfewData.status}</span>
       <Countdown/>
       <span className="curfew-end-time">{curfewData.detail}</span>
-      {/*<button className="curfew-schedule-btn">Curfew schedule</button>*/}
+      <Link to="/schedule" className="curfew-schedule-btn">Curfew schedule</Link>
       <a className={'github-icon'} href="https://github.com/sultanofcardio/curfewja" target="_blank" rel="noreferrer">
         <img src={githubIcon} alt="GitHub link"/>
       </a>
@@ -21,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

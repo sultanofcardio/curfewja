@@ -25,7 +25,6 @@ export default class Curfew {
   /**
    * Create a new Curfew object
    * @param {string} date
-   * @param {string} previousEnd
    * @param {string} start
    * @param {string} end
    * @param {boolean} noMovementDay
