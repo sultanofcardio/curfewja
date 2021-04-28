@@ -19,20 +19,13 @@ export default class CurfewData {
   statusClass;
 
   /**
-   * @type number
-   */
-  minutesUntilCurfew;
-
-  /**
    * Data displayed on the front page when first loaded
    * @param {string} status Main heading on the landing page
    * @param {string} detail Supplemental text on the landing page
-   * @param {number} minutesUntilCurfew The number of minutes until the next curfew
    */
-  constructor(status, detail, minutesUntilCurfew = -1) {
+  constructor(status, detail) {
     this.status = status
     this.detail = detail
-    this.minutesUntilCurfew = minutesUntilCurfew
 
     switch (status) {
       case CURFEW_STATUSES.active:
