@@ -45,7 +45,7 @@
 
 button.calendar-tile:disabled {
   background: transparent;
-  opacity: 50%;
+  opacity: 0.5;
   color: white;
 }
 
