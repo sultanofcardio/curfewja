@@ -10,11 +10,6 @@ export default class Curfew {
   /**
    * @type moment.Moment
    */
-  previousEnd;
-
-  /**
-   * @type moment.Moment
-   */
   start;
 
   /**
@@ -35,9 +30,8 @@ export default class Curfew {
    * @param {string} end
    * @param {boolean} noMovementDay
    */
-  constructor(date, previousEnd, start, end, noMovementDay = false) {
+  constructor(date, start, end, noMovementDay = false) {
     this.date = moment(date).utcOffset(-5)
-    this.previousEnd = moment(previousEnd).utcOffset(-5)
     this.start = moment(start).utcOffset(-5)
     this.end = moment(end).utcOffset(-5)
     this.noMovementDay = noMovementDay

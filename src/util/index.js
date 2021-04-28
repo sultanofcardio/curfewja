@@ -13,16 +13,29 @@ export const CURFEW_STATUSES = {
  * @return {Curfew}
  */
 export function getCurrentCurfew() {
-  window.moment = moment
   const today = moment().utcOffset(-5).format('YYYYMMDD')
   return data.find(curfew => curfew.date.format('YYYYMMDD') === today)
 }
 
 /**
+ * Get the curfew that appears before the supplied curfew in the list
+ * @param {Curfew} curfew The pivot
  * @return {Curfew}
  */
-function getNextCurfew() {
-  return [...data].filter(it => it.date.isAfter(moment()))
+export function getPrevCurfew(curfew) {
+  return [...data].filter(it => it.date.isBefore(curfew.date))
+    .sort((a, b) => {
+      return a.date.format('YYYYMMDD') - b.date.format('YYYYMMDD')
+    }).reverse()[0]
+}
+
+/**
+ * Get the curfew that appears after the supplied one in the list
+ * @param {Curfew} curfew The pivot
+ * @return {Curfew}
+ */
+function getNextCurfew(curfew) {
+  return [...data].filter(it => it.date.isAfter(curfew.date))
     .sort((a, b) => {
       return a.date.format('YYYYMMDD') - b.date.format('YYYYMMDD')
     })[0]
@@ -79,8 +92,7 @@ export function getCurfewData() {
     return new CurfewData(CURFEW_STATUSES.noCurfewToday, nextCurfewDetail())
   }
 
-  const prevCurfewEndHour = currentCurfew.previousEnd.hour()
-  const nowHour = now.hour()
+  const prevCurfew = getPrevCurfew(currentCurfew)
 
   /**
    * @type CurfewData
@@ -88,8 +100,8 @@ export function getCurfewData() {
   let curfewData;
 
   // Check if the previous curfew has ended
-  if (prevCurfewEndHour - nowHour > 0) {
-    curfewData = new CurfewData(CURFEW_STATUSES.active, `Curfew ends ${relativeMomentString(currentCurfew.previousEnd)}`)
+  if (prevCurfew.end?.diff(now, 'seconds') > 0) {
+    curfewData = new CurfewData(CURFEW_STATUSES.active, `Curfew ends ${relativeMomentString(prevCurfew.end)}`)
   } else {
     const hoursUntilCurfew = currentCurfew.start.diff(now, 'hours', true)
     if (hoursUntilCurfew > 2) {
@@ -101,12 +113,9 @@ export function getCurfewData() {
       )
     } else {
       // Check if the curfew already ended
-      const endsToday = currentCurfew.end.date() === now.date()
+      const endsToday = currentCurfew.end.format('YYYYMMDD') === now.format('YYYYMMDD')
       if (endsToday) {
-        const endHour = currentCurfew.end.hour()
-        const endMinute = currentCurfew.end.minute()
-        const nowMinute = now.minute()
-        const alreadyEnded = endHour < nowHour || (endHour === nowHour && endMinute <= nowMinute)
+        const alreadyEnded = currentCurfew.end.diff(now, 'seconds') > 0
         if (alreadyEnded) {
           curfewData = new CurfewData(CURFEW_STATUSES.movementAllowed, nextCurfewDetail())
         } else {
