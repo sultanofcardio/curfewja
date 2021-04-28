@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {findCurfew, getPrevCurfew} from "../../util";
 import data from "../../data";
 import moment from "moment";
+import {GitHubIcon} from "../GitHubIcon";
 
 const Schedule = () => {
 
@@ -49,6 +50,7 @@ const Schedule = () => {
         <span className="previous-curfew">{previousVerbiage}</span>
         <span className="current-curfew">{currentVerbiage}</span>
       </div>
+      <GitHubIcon/>
     </div>
   )
 }

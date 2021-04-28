@@ -1,0 +1,15 @@
+.icon {
+  position: absolute;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  border-radius: 50%;
+  bottom: 16px;
+  width: 48px;
+  height: 48px;
+}
+
+.icon > img {
+  width: 48px;
+  height: 48px;
+}
