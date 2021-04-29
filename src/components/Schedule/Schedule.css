@@ -92,6 +92,10 @@ button.calendar-tile {
   text-decoration: none;
 }
 
+.react-calendar__navigation__label__labelText {
+  font-size: 14pt;
+}
+
 .date {
   margin-top: 32px;
   padding: 0 16px;
