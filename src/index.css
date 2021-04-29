@@ -14,6 +14,13 @@
   font-style: italic;
 }
 
+:root {
+  --free-movement-green: #25B900;
+  --active-curfew-red: #C32828;
+  --imminent-curfew-orange: #C38528;
+  --schedule-blue: #3777A6;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;

@@ -6,6 +6,7 @@ import {findCurfew, getPrevCurfew} from "../../util";
 import data from "../../data";
 import moment from "moment";
 import {GitHubIcon} from "../GitHubIcon";
+import CurfewLine from "./CurfewLine";
 
 const Schedule = () => {
 
@@ -25,16 +26,6 @@ const Schedule = () => {
     })
   }, [date, setCurfew])
 
-  let previousVerbiage = ''
-  if (curfew.current && curfew.prev?.end.format("YYYYMMDD") === curfew.current?.date.format("YYYYMMDD")) {
-    previousVerbiage = `Previous curfew ends at ${curfew.prev.end.format('h:mma')}`
-  }
-
-  let currentVerbiage = 'No restrictions'
-  if (curfew.current) {
-    currentVerbiage = `Curfew starts at ${curfew.current.start.format('h:mma')} and ends ${curfew.current.end.format('h:mma')} the next day`
-  }
-
   return (
     <div className="schedule-holder">
       <div className="schedule">
@@ -47,10 +38,10 @@ const Schedule = () => {
                   onChange={d => setDate(d)}
                   tileClassName='calendar-tile'/>
         <span className="date">{moment(date).format('dddd MMM Do, YYYY')}</span>
-        <span className="previous-curfew">{previousVerbiage}</span>
-        <span className="current-curfew">{currentVerbiage}</span>
+        <CurfewLine end={curfew.prev?.end}
+                    start={curfew?.current.start}/>
+        <GitHubIcon className="schedule-github-icon" />
       </div>
-      <GitHubIcon/>
     </div>
   )
 }
