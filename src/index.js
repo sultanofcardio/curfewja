@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/Home/Home';
 import {ContextProvider} from "./util/context";
-import Schedule from "./components/schedule/Schedule";
+import Schedule from "./components/Schedule/Schedule";
 
 ReactDOM.render(
   <React.StrictMode>
