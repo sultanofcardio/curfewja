@@ -98,13 +98,14 @@ const CurfewLine = ({end, start}) => {
       borderRadius: '50%',
       position: 'absolute',
       top: -16,
+      display: currentHeight === 0 ? 'none': 'flex',
     },
 
     currentCurfew: {
       textAlign: 'right',
       width: 100,
       height: currentHeight,
-      display: 'flex',
+      display: currentHeight === 0 ? 'none': 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end'
     },
@@ -121,7 +122,8 @@ const CurfewLine = ({end, start}) => {
     },
 
     currentTimeHolder: {
-      height: prevHeight === 0 ? freeMovementHeight + 19 : freeMovementHeight
+      height: prevHeight === 0 ? freeMovementHeight + 19 : freeMovementHeight,
+      display: currentHeight === 0 ? 'none': 'flex',
     },
 
     horizontalLine: {

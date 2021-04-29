@@ -1,6 +1,7 @@
 import moment from "moment";
 import data from "../data";
 import CurfewData from "../model/CurfewData";
+import Curfew from "../model/Curfew";
 
 export const CURFEW_STATUSES = {
   active: 'Curfew active',
@@ -89,7 +90,7 @@ export function getCurfewData() {
   const currentCurfew = getCurrentCurfew()
 
   const nextCurfewDetail = () => {
-    const nextCurfew = getNextCurfew()
+    const nextCurfew = getNextCurfew(currentCurfew ? currentCurfew : new Curfew(moment().utcOffset(-5).format('YYYY-MM-DD'), null, null))
     let detail;
     if (nextCurfew) {
       detail = 'Next curfew ' + relativeMomentString(nextCurfew.start)
@@ -114,6 +115,11 @@ export function getCurfewData() {
   if (prevCurfew.end?.diff(now, 'seconds') > 0) {
     curfewData = new CurfewData(CURFEW_STATUSES.active, `Curfew ends ${relativeMomentString(prevCurfew.end)}`)
   } else {
+
+    if(!currentCurfew.start.isValid()) {
+      return new CurfewData(CURFEW_STATUSES.movementAllowed, nextCurfewDetail())
+    }
+
     const hoursUntilCurfew = currentCurfew.start.diff(now, 'hours', true)
     if (hoursUntilCurfew > 2) {
       curfewData = new CurfewData(CURFEW_STATUSES.movementAllowed, `Curfew starts ${relativeMomentString(currentCurfew.start)}`)
