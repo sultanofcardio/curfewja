@@ -36,6 +36,8 @@ const Schedule = () => {
                   minDate={data[0].date.toDate()}
                   maxDate={data[data.length - 1].date.toDate()}
                   onChange={d => setDate(d)}
+                  showFixedNumberOfWeeks={true}
+                  calendarType='US'
                   tileClassName='calendar-tile'/>
         <span className="date">{moment(date).format('dddd MMM Do, YYYY')}</span>
         <CurfewLine end={curfew.prev?.end}
