@@ -13,3 +13,10 @@
   width: 48px;
   height: 48px;
 }
+
+@media screen and (max-height: 1050px){
+  .icon {
+    position: unset;
+    margin: 24px 0 16px
+  }
+}

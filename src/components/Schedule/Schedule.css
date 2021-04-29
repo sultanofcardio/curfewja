@@ -8,7 +8,8 @@
 }
 
 .schedule {
-  max-width: 400px;
+  max-width: 800px;
+  width: 100%;
   margin-top: 32px;
   color: white;
 
@@ -79,7 +80,7 @@ button.calendar-tile {
   padding: 0 16px;
   box-sizing: border-box;
   width: 100%;
-
+  text-align: center;
   font-size: 18pt;
 }
 
@@ -91,7 +92,18 @@ button.calendar-tile {
   font-size: 18px;
 }
 
-.schedule-github-icon {
-  position: unset;
-  margin: 24px 0 16px;
+@media screen and (min-width: 500px){
+  .react-calendar__viewContainer {
+    height: 300px;
+  }
+
+  .react-calendar__month-view,
+  .react-calendar__month-view > div,
+  .react-calendar__month-view > div > div {
+    height: 100%;
+  }
+
+  .react-calendar__month-view__days {
+    height: calc(100% - 30px);
+  }
 }

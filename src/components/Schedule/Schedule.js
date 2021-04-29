@@ -42,7 +42,7 @@ const Schedule = () => {
         <span className="date">{moment(date).format('dddd MMM Do, YYYY')}</span>
         <CurfewLine end={curfew.prev?.end}
                     start={curfew?.current.start}/>
-        <GitHubIcon className="schedule-github-icon" />
+        <GitHubIcon  />
       </div>
     </div>
   )
