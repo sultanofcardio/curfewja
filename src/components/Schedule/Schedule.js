@@ -7,6 +7,8 @@ import data from "../../data";
 import moment from "moment";
 import {GitHubIcon} from "../GitHubIcon";
 import CurfewLine from "./CurfewLine";
+import {Link} from "react-router-dom";
+import {ArrowLeft} from "react-feather";
 
 const Schedule = () => {
 
@@ -29,6 +31,9 @@ const Schedule = () => {
   return (
     <div className="schedule-holder">
       <div className="schedule">
+        <Link className='logo-holder' to='/'>
+          <ArrowLeft />
+        </Link>
         <span className="title">Curfew Schedule</span>
         <span className="subtitle">Choose a day to see the schedule</span>
         <Calendar className='calendar'
@@ -42,7 +47,7 @@ const Schedule = () => {
         <span className="date">{moment(date).format('dddd MMM Do, YYYY')}</span>
         <CurfewLine end={curfew.prev?.end}
                     start={curfew?.current.start}/>
-        <GitHubIcon  />
+        <GitHubIcon className='gh-icon'  />
       </div>
     </div>
   )

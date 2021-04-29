@@ -1,6 +1,18 @@
+.logo-holder {
+  align-self: flex-start;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  margin-left: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .schedule-holder {
   min-height: 100vh;
-  min-width: 100vw;
   background: #3777a6;
   display: flex;
   align-items: flex-start;
@@ -10,7 +22,7 @@
 .schedule {
   max-width: 800px;
   width: 100%;
-  margin-top: 32px;
+  margin-top: 16px;
   color: white;
 
   display: flex;
@@ -22,6 +34,7 @@
 .title {
   font-size: 36pt;
   text-align: center;
+  margin-top: 16px;
 }
 
 .subtitle {
@@ -106,4 +119,28 @@ button.calendar-tile {
   .react-calendar__month-view__days {
     height: calc(100% - 30px);
   }
+}
+
+@media screen and (max-height: 1080px){
+  .gh-icon {
+    position: unset;
+    margin: 24px 0 16px
+  }
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: var(--schedule-blue);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px white;
+  background-color: white;
 }
