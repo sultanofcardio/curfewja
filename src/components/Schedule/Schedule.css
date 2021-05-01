@@ -1,10 +1,11 @@
 .logo-holder {
-  align-self: flex-start;
-  width: 50px;
-  height: 50px;
+  position: absolute;
+  left: 16px;
+
+  width: 40px;
+  height: 40px;
   background: white;
   border-radius: 50%;
-  margin-left: 16px;
 
   display: flex;
   justify-content: center;
@@ -15,15 +16,16 @@
   min-height: 100vh;
   background: #3777a6;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
 }
 
 .schedule {
   max-width: 800px;
   width: 100%;
   margin-top: 16px;
-  color: white;
 
   display: flex;
   flex-direction: column;
@@ -31,10 +33,20 @@
   box-sizing: border-box;
 }
 
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
 .title {
   font-size: 36pt;
   text-align: center;
-  margin-top: 16px;
 }
 
 .subtitle {
@@ -46,10 +58,15 @@
 .calendar {
   margin-top: 32px;
   min-width: 100%;
-  padding: 0 16px;
+  padding: 16px;
   background: transparent;
   box-sizing: border-box;
   border: none;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--schedule-blue);
 }
 
 .calendar-tile {
@@ -105,6 +122,75 @@ button.calendar-tile {
   font-size: 18pt;
 }
 
+.curfew-schedule {
+  max-width: 800px;
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  padding:  0 16px;
+  box-sizing: border-box;
+}
+
+.events {
+  text-align: center;
+  width: 92%;
+  margin-left: 32px;
+  height: fit-content;
+}
+
+.events > div {
+  position: relative;
+}
+
+.curfew {
+  background: var(--active-curfew-red);
+}
+
+.movement {
+  background: var(--free-movement-green);
+}
+
+.event {
+  text-align: left;
+  width: 100%;
+  height: 72px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.times {
+  width: 5%;
+  min-width: 46px;
+  margin-top: 11px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  max-height: 72px;
+  min-height: 72px;
+  padding: 0 16px;
+  position: relative;
+  border-bottom: 1px solid transparent;
+}
+
+.time > span {
+  position: absolute;
+  bottom: 0;
+}
+
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 21pt;
+}
+
+
 .previous-curfew, .current-curfew {
   margin-top: 40px;
   padding: 0 16px;
@@ -113,7 +199,18 @@ button.calendar-tile {
   font-size: 18px;
 }
 
+@media screen and (max-width: 500px) {
+  .logo-holder {
+    position: relative;
+  }
+
+  .nav {
+    justify-content: space-between;
+  }
+}
+
 @media screen and (min-width: 500px){
+
   .react-calendar__viewContainer {
     height: 300px;
   }
@@ -129,11 +226,9 @@ button.calendar-tile {
   }
 }
 
-@media screen and (max-height: 1080px){
-  .gh-icon {
-    position: unset;
-    margin: 24px 0 16px
-  }
+.gh-icon {
+  position: unset;
+  margin: 24px 0 16px
 }
 
 ::-webkit-scrollbar-track {
