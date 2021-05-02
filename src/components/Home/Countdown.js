@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {Context} from "../../util/context";
 import {useContext, useEffect, useState} from "react";
 import momentTz from "moment-timezone";

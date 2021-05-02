@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import 'react-calendar/dist/Calendar.css';
 import './Schedule.css'
 import Calendar from "react-calendar";
@@ -77,7 +78,7 @@ const Schedule = () => {
                   minDate={allCurfews[0]?.start?.toDate()}
                   maxDate={allCurfews[allCurfews.length - 1]?.end?.toDate()}
                   onChange={d => {
-                    setDate(momentTz.parseZone(d))
+                    setDate(momentTz.parseZone(d.toISOString().replace('.000Z', '-05:00')))
                     if (calendarRef) {
                       calendarRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
                     }
