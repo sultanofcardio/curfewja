@@ -1,4 +1,6 @@
-import makeMoment from "moment";
+import momentTz from "moment-timezone";
+
+export const TIME_ZONE = 'America/Jamaica'
 
 /**
  * A data type representing the duration of a curfew restriction.
@@ -8,12 +10,12 @@ import makeMoment from "moment";
 export default class Curfew {
 
   /**
-   * @type Date
+   * @type {moment.Moment}
    */
   start;
 
   /**
-   * @type Date
+   * @type {moment.Moment}
    */
   end;
 
@@ -23,8 +25,8 @@ export default class Curfew {
    * @param {string} end
    */
   constructor(start, end) {
-    this.start = new Date(start)
-    this.end = new Date(end)
+    this.start = momentTz.parseZone(start)
+    this.end = momentTz.parseZone(end)
   }
 }
 
@@ -45,10 +47,9 @@ export class CurfewData {
 
   /**
    * Build curfew data around the given date
-   * @param date The date for which to fetch curfew data
+   * @param {moment.Moment} moment The date for which to fetch curfew data
    */
-  constructor(date) {
-    const moment = makeMoment(date)
+  constructor(moment) {
 
     // Check if there is an active curfew
     let curfew = curfews.find(it => moment.isBetween(it.start, it.end))
@@ -61,7 +62,7 @@ export class CurfewData {
 
     // Check if there is a curfew about to start in the next two hours
     curfew = curfews.find(it => {
-      const curfewMoment = makeMoment(it.start)
+      const curfewMoment = it.start
       return curfewMoment.isAfter(moment) && curfewMoment.diff(moment, 'hours', true) <= 2
     })
 
@@ -73,7 +74,7 @@ export class CurfewData {
 
     // Check if there is a curfew starting later today
     curfew = curfews.find(it => {
-      const curfewMoment = makeMoment(it.start)
+      const curfewMoment = it.start
       return curfewMoment.isAfter(moment) && curfewMoment.isSame(moment, 'day')
     })
 
@@ -85,7 +86,7 @@ export class CurfewData {
 
     // Check if there's a curfew that has already ended today
     curfew = curfews.find(it => {
-      const curfewMoment = makeMoment(it.start)
+      const curfewMoment = it.start
       return curfewMoment.isBefore(moment) && curfewMoment.isSame(moment, 'day')
     })
 
@@ -96,7 +97,7 @@ export class CurfewData {
     }
 
     // Find out when the next curfew starts
-    curfew = curfews.find(it => makeMoment(it.start).isAfter(moment))
+    curfew = curfews.find(it => it.start.isAfter(moment))
     if (curfew) {
       this.detail = `Next curfew ${relativeMomentString(curfew.start)}`
       return
@@ -145,25 +146,23 @@ export const curfews = [
 ]
 
 /**
- * Get all the curfews for a particular date
- * @param {Date} date
+ * Get all the curfews for a particular day
+ * @param {moment.Moment} day
  * @return {Array<Curfew>}
  */
-export function findCurfews(date) {
+export function findCurfews(day) {
   return curfews.filter(curfew => {
-    return makeMoment(curfew.start).isSame(makeMoment(date), 'day') ||
-      makeMoment(curfew.end).isSame(makeMoment(date), 'day')
+    return curfew.start.isSame(day, 'day') || curfew.end.isSame(day, 'day')
   })
 }
 
 /**
  * Format a date to a relative string (e.g. 'tomorrow at 5:00pm')
- * @param {Date} date
+ * @param {moment.Moment} moment
  * @return string
  */
-export function relativeMomentString(date) {
-  const moment = makeMoment(date)
-  const now = makeMoment(new Date())
+export function relativeMomentString(moment) {
+  const now = momentTz.tz(TIME_ZONE)
 
   /**
    * @type string

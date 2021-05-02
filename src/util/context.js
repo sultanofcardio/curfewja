@@ -1,5 +1,6 @@
 import {createContext, useReducer} from "react";
-import {CurfewData} from "../model/Curfew";
+import {CurfewData, TIME_ZONE} from "../model/Curfew";
+import momentTz from "moment-timezone";
 
 const actions = {
   setCurfewData: 'SET_CURFEW_DATA'
@@ -15,7 +16,7 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  curfewData: new CurfewData(new Date())
+  curfewData: new CurfewData(momentTz.tz(TIME_ZONE))
 }
 
 export const Context = createContext(initialState)

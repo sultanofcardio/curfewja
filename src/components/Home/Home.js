@@ -1,6 +1,6 @@
 import './Home.css';
 import {useContext} from "react";
-// import {Countdown} from "./Countdown";
+// import {Countdown} from "./Countdown"; TODO: Fix countdown
 import {Context} from "../../util/context";
 import {Link} from "react-router-dom";
 import {GitHubIcon} from "../GitHubIcon";

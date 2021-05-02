@@ -1,50 +1,31 @@
 import 'react-calendar/dist/Calendar.css';
 import './Schedule.css'
 import Calendar from "react-calendar";
-import {useEffect, useState} from "react";
-import moment from "moment";
-import makeMoment from "moment";
+import {useEffect, useRef, useState} from "react";
 import {GitHubIcon} from "../GitHubIcon";
 import {Link} from "react-router-dom";
 import {ArrowLeft} from "react-feather";
-import {curfews as allCurfews, findCurfews} from "../../model/Curfew";
-
-const isYesterday = (date, other) => {
-  const moment = makeMoment(other)
-  const now = makeMoment(date)
-  return moment.isBefore(now) && !moment.isSame(now, 'day')
-}
-
-const isTomorrow = (date, other) => {
-  const moment = makeMoment(other)
-  const now = makeMoment()
-  return moment.isAfter(now) && !moment.isSame(now, 'day')
-}
-
-const isToday = (date, other) => {
-  const moment = makeMoment(other)
-  const now = makeMoment()
-  return moment.isSame(now, 'day')
-}
+import {curfews as allCurfews, findCurfews, TIME_ZONE} from "../../model/Curfew";
+import momentTz from "moment-timezone";
 
 const Schedule = () => {
 
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(momentTz.tz(TIME_ZONE));
   const [curfews, setCurfews] = useState(findCurfews(date))
   const [events, setEvents] = useState([])
+  const calendarRef = useRef(null)
 
   useEffect(() => {
     setCurfews(findCurfews(date))
   }, [date, setCurfews])
 
   useEffect(() => {
-    const sorted = curfews.sort((a, b) => makeMoment(a.start).diff(b.start))
+    const sorted = curfews.sort((a, b) => a.start.diff(b.start))
     const data = []
 
     for (let i = 0; i < 24; i++) {
       const curfew = sorted.find(it => {
-        const hour = makeMoment(date).hour(i).minute(1)
-        return hour.isBetween(makeMoment(it.start), makeMoment(it.end), 'minute')
+        return date.hour(i).minute(1).isBetween(it.start, it.end)
       })
       if (curfew) {
         if (data.length === 0 || data[data.length - 1][0] !== 'curfew') {
@@ -72,7 +53,7 @@ const Schedule = () => {
       } else {
         return (
           <div className='movement' key={'movement' + i}>
-            {it.map((_, j) => <div className='event'  key={'movement-event' + j}/>)}
+            {it.map((_, j) => <div className='event' key={'movement-event' + j}/>)}
             <span className='name' key={'movement-name' + i}>Free Movement</span>
           </div>
         )
@@ -91,14 +72,20 @@ const Schedule = () => {
         </div>
         <span className="subtitle">Choose a day to see the schedule</span>
         <Calendar className='calendar'
-                  value={date}
-                  minDate={allCurfews[0]?.start}
-                  maxDate={allCurfews[allCurfews.length - 1]?.end}
-                  onChange={d => setDate(d)}
+                  inputRef={calendarRef}
+                  value={date.toDate()}
+                  minDate={allCurfews[0]?.start?.toDate()}
+                  maxDate={allCurfews[allCurfews.length - 1]?.end?.toDate()}
+                  onChange={d => {
+                    setDate(momentTz.parseZone(d))
+                    if (calendarRef) {
+                      calendarRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+                    }
+                  }}
                   showFixedNumberOfWeeks={true}
                   calendarType='US'
                   tileClassName='calendar-tile'/>
-        <span className="date">{moment(date).format('dddd MMM Do, YYYY')}</span>
+        <span className="date">{date.format('dddd MMM Do, YYYY')}</span>
         <div className='curfew-schedule'>
           <div className='times'>
             <div className='time'><span>1 am</span></div>
@@ -127,39 +114,6 @@ const Schedule = () => {
             <div className='time'><span>12 am</span></div>
           </div>
           <div className='events'>
-            {/*<div className='curfew'>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <span className='name'>Curfew</span>*/}
-            {/*</div>*/}
-            {/*<div className='movement'>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <span className='name'>Free Movement</span>*/}
-            {/*</div>*/}
-            {/*<div className='curfew'>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <div className='event'/>*/}
-            {/*  <span className='name'>Curfew</span>*/}
-            {/*</div>*/}
             {events}
           </div>
         </div>

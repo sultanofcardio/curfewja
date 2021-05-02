@@ -206,6 +206,7 @@ button.calendar-tile {
 
   .nav {
     justify-content: space-between;
+    padding-left: 8px;
   }
 }
 
