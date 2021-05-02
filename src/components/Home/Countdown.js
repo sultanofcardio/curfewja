@@ -1,12 +1,14 @@
 import {Context} from "../../util/context";
 import {useContext, useEffect, useState} from "react";
-import moment from "moment";
-import {getCurfewData, getCurrentCurfew} from "../../util";
+import momentTz from "moment-timezone";
+import {CurfewData, TIME_ZONE} from "../../model/Curfew";
 
 export const Countdown = () => {
   const {setCurfewData} = useContext(Context)
-  const curfew = getCurrentCurfew()
-  const [offset, setOffset] = useState(curfew?.start?.diff(moment().utcOffset(-5), 'seconds') + 1)
+  const curfew = new CurfewData(momentTz.tz(TIME_ZONE)).curfew
+
+  // Number of seconds to the curfew
+  const [offset, setOffset] = useState(curfew?.start?.diff(momentTz.tz(TIME_ZONE), 'seconds') + 1)
 
   useEffect(() => {
     const msUntilNextSecond = 1000 - new Date().getMilliseconds();
@@ -14,7 +16,7 @@ export const Countdown = () => {
     if (offset > 0) {
       setTimeout(() => {
         setOffset(prev => prev - 1)
-        setCurfewData(getCurfewData())
+        setCurfewData(new CurfewData(momentTz.tz(TIME_ZONE)))
       }, msUntilNextSecond)
     }
   }, [offset])

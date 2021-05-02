@@ -46,60 +46,65 @@ export class CurfewData {
   detail;
 
   /**
+   * @type Curfew
+   */
+  curfew;
+
+  /**
    * Build curfew data around the given date
    * @param {moment.Moment} moment The date for which to fetch curfew data
    */
   constructor(moment) {
 
     // Check if there is an active curfew
-    let curfew = curfews.find(it => moment.isBetween(it.start, it.end))
+    this.curfew = curfews.find(it => moment.isBetween(it.start, it.end))
 
-    if (curfew) {
+    if (this.curfew) {
       this.status = CURFEW_STATUSES.active
-      this.detail = `Curfew ends ${relativeMomentString(curfew.end)}`
+      this.detail = `Curfew ends ${relativeMomentString(this.curfew.end)}`
       return
     }
 
     // Check if there is a curfew about to start in the next two hours
-    curfew = curfews.find(it => {
+    this.curfew = curfews.find(it => {
       const curfewMoment = it.start
       return curfewMoment.isAfter(moment) && curfewMoment.diff(moment, 'hours', true) <= 2
     })
 
-    if (curfew) {
+    if (this.curfew) {
       this.status = CURFEW_STATUSES.startingSoon
-      this.detail = `Curfew starts ${relativeMomentString(curfew.start)}`
+      this.detail = `Curfew starts ${relativeMomentString(this.curfew.start)}`
       return
     }
 
     // Check if there is a curfew starting later today
-    curfew = curfews.find(it => {
+    this.curfew = curfews.find(it => {
       const curfewMoment = it.start
       return curfewMoment.isAfter(moment) && curfewMoment.isSame(moment, 'day')
     })
 
-    if (curfew) {
+    if (this.curfew) {
       this.status = CURFEW_STATUSES.movementAllowed
-      this.detail = `Curfew starts ${relativeMomentString(curfew.start)}`
+      this.detail = `Curfew starts ${relativeMomentString(this.curfew.start)}`
       return
     }
 
     // Check if there's a curfew that has already ended today
-    curfew = curfews.find(it => {
+    this.curfew = curfews.find(it => {
       const curfewMoment = it.start
       return curfewMoment.isBefore(moment) && curfewMoment.isSame(moment, 'day')
     })
 
-    if (curfew) {
+    if (this.curfew) {
       this.status = CURFEW_STATUSES.movementAllowed
     } else {
       this.status = CURFEW_STATUSES.noCurfewToday
     }
 
     // Find out when the next curfew starts
-    curfew = curfews.find(it => it.start.isAfter(moment))
-    if (curfew) {
-      this.detail = `Next curfew ${relativeMomentString(curfew.start)}`
+    const nextCurfew = curfews.find(it => it.start.isAfter(moment))
+    if (nextCurfew) {
+      this.detail = `Next curfew ${relativeMomentString(nextCurfew.start)}`
       return
     }
 
