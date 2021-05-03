@@ -15,10 +15,12 @@ export const Countdown = () => {
     const msUntilNextSecond = 1000 - new Date().getMilliseconds();
 
     if (offset > 0) {
-      setTimeout(() => {
+      const id = setTimeout(() => {
         setOffset(prev => prev - 1)
         setCurfewData(new CurfewData(momentTz.tz(TIME_ZONE)))
       }, msUntilNextSecond)
+
+      return () => clearTimeout(id)
     }
   }, [offset])
 
