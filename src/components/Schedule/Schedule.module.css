@@ -322,4 +322,9 @@
   .outerBackLink {
     left: 16px;
   }
+
+  .backBtn {
+    width: 64px;
+    height: 50px;
+  }
 }
