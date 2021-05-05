@@ -116,6 +116,7 @@ const Schedule = () => {
                     showFixedNumberOfWeeks={true}
                     calendarType='US'
                     tileClassName='calendar-tile'/>
+          <GitHubIcon className={styles.calendarGhIcon}/>
           <Attribution className={styles.calendarAttribution} />
         </section>
         <section className={styles.schedule}>
@@ -129,6 +130,7 @@ const Schedule = () => {
           <div className={styles.events}>
             {events}
           </div>
+          <GitHubIcon className={styles.scheduleGhIcon}/>
           <Attribution className={styles.scheduleAttribution} />
         </section>
       </main>

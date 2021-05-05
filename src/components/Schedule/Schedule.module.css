@@ -46,6 +46,10 @@
   margin-top: 70px;
 }
 
+.scheduleGhIcon, .calendarGhIcon {
+  display: none;
+}
+
 .months {
   margin: 32px 0 0;
   padding: 0;
@@ -100,6 +104,7 @@
   position: absolute;
   bottom: 0;
   width: 80%;
+  margin-top: 32px;
 }
 
 .calendarAttribution a,
@@ -212,6 +217,13 @@
     display: none;
   }
 
+  .calendarGhIcon {
+    display: flex;
+    width: 80%;
+    position: absolute;
+    bottom: 32px;
+  }
+
   .outerBackLink {
     display: unset;
   }
@@ -277,6 +289,16 @@
   }
 
   .calendarAttribution  {
+    display: none;
+  }
+
+  .scheduleGhIcon {
+    display: flex;
+    width: 100%;
+    position: unset;
+  }
+
+  .calendarGhIcon {
     display: none;
   }
 
