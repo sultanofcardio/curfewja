@@ -1,0 +1,297 @@
+.root {
+  background: var(--schedule-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  min-height: 100vh;
+
+  --sidebar-width: 288px;
+  --current-color: #00FAF9;
+}
+
+.sidebar {
+  position: relative;
+  background: #001724;
+  max-width: var(--sidebar-width);
+  min-height: 100vh;
+  height: 800px;
+  padding: 16px 88px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outerBackLink {
+  display: none;
+}
+
+.outerBackLink, .innerBackLink {
+  position: absolute;
+  top: 16px;
+  left: 32px;
+  align-self: flex-start;
+}
+
+.backBtn {
+  width: 80px;
+  height: 64px;
+}
+
+.ghIcon {
+  position: unset;
+  width: 112px;
+  height: 78px;
+  margin-top: 70px;
+}
+
+.months {
+  margin: 32px 0 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  min-height: 500px;
+  max-height: 700px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month {
+  /*margin-top: 24px;*/
+  text-transform: capitalize;
+  font-size: 16pt;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  height: 45px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.month.selected {
+  color: var(--current-color);
+}
+
+.month:hover {
+  background: white;
+  color: #001724;
+}
+
+.main {
+  width: calc(100vw - var(--sidebar-width));
+  min-width: 800px;
+  max-width: calc(1630px - var(--sidebar-width));
+  min-height: 100vh;
+  height: 800px;
+  padding: 32px;
+
+  display: flex;
+}
+
+.calendar {
+  width: 70%;
+  height: 100%;
+  padding: 0 16px 0 38px;
+
+  display: flex;
+  flex-direction: column;;
+}
+
+.calendar > h1 {
+  font-weight: bold;
+  font-size: 40pt;
+  margin: 8px 0;
+}
+
+.calendar > h3 {
+  font-size: 16pt;
+  font-weight: normal;
+  margin: 8px 0;
+}
+
+.schedule {
+  width: 30%;
+  min-width: 360px;
+  background: #021F35;
+  border-radius: 50px;
+  margin: 0 24px;
+  padding: 48px 32px;
+  overflow-y: hidden;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date > span {
+  color: #959595;
+  font-size: 14pt;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  margin-top: 32px;
+  height: 95%;
+}
+
+.events > hr {
+  margin: 0 30px;
+}
+
+.event {
+  width: calc(100% - 64px);
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #707070;
+}
+
+.hour {
+  width: 64px;
+  height: 32px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.curfew > .hour {
+  background: #E34D4D;
+}
+
+.movement > .hour {
+  background: #4DE3A4;
+  color: #021F35;
+}
+
+.eventType {
+  font-weight: bold;
+}
+
+.curfew > .eventType {
+  color: #E34D4D;
+}
+
+.movement > .eventType {
+  color: #4DE3A4;
+}
+
+@media (max-width: 1500px) {
+  .sidebar {
+    display: none;
+  }
+
+  .outerBackLink {
+    display: unset;
+  }
+
+  .main {
+    width: 100vw;
+    padding: 78px 32px 32px;
+  }
+}
+
+@media (max-width: 1180px) {
+
+  .main {
+    padding-bottom: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .schedule {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .main {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 960px) {
+
+  .calendar > h1 {
+    text-align: center;
+  }
+
+  .calendar > h3 {
+    text-align: center;
+  }
+
+  .main {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .calendar > h1 {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .calendar > h3 {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .main {
+    min-width: 360px;
+    display: unset;
+    height: fit-content;
+    padding: 78px 0 0;
+  }
+
+  .calendar {
+    width: 100%;
+    padding-left: 16px;
+    display: unset;
+  }
+
+  .schedule {
+    width: 100%;
+    border-radius: 0;
+    padding-left: 64px;
+    padding-right: 64px;
+    margin: 0;
+  }
+
+  .date {
+    justify-content: space-around;
+  }
+
+  .events {
+    overflow-y: unset;
+  }
+
+  .event {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .schedule {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .outerBackLink {
+    left: 16px;
+  }
+}

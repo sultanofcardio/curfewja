@@ -1,0 +1,115 @@
+.react-calendar {
+  min-width: 600px;
+  width: 100%;
+  max-width: 800px;
+  background: transparent;
+  border: none;
+  margin: 40px 0 0;
+}
+
+.react-calendar button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50px;
+}
+
+.react-calendar__viewContainer {
+  margin-top: 32px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--current-color);
+}
+
+.react-calendar__month-view__weekdays__weekday > abbr {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  color: white;
+  height: 60px;
+  cursor: pointer;
+}
+
+.react-calendar__tile.react-calendar__tile--now {
+  background: transparent;
+}
+
+.react-calendar__tile > abbr {
+  border-radius: 50%;
+  padding: 8px 11px;
+}
+
+/* Show a nice ring around the current day. Same color as the current month in the sidebar */
+.react-calendar__tile.react-calendar__tile--now > abbr {
+  border: 1px solid var(--current-color);
+}
+
+.react-calendar__tile:enabled:hover > abbr,
+.react-calendar__tile:enabled:focus > abbr,
+.react-calendar__tile--active > abbr,
+.react-calendar__navigation__next-button:hover,
+.react-calendar__navigation__prev-button:hover {
+  background-color: #006edc;
+}
+
+/* Disable the year nav btn */
+.react-calendar__navigation__next2-button,
+.react-calendar__navigation__prev2-button {
+  display: none;
+}
+
+/* Style the month nav btn */
+.react-calendar__navigation__next-button,
+.react-calendar__navigation__prev-button {
+  color: #adb8c1;
+  font-size: 28pt;
+  cursor: pointer;
+}
+
+/* Style the month name */
+.react-calendar__navigation__label {
+  font-size: 16pt;
+  font-weight: bold;
+  color: white;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #7C7C7C;
+}
+
+/* Hide disabled days on the date picker */
+.react-calendar__month-view__days__day:disabled {
+  display: none;
+}
+
+@media (max-width: 1500px) {
+  .react-calendar {
+    max-width: unset;
+  }
+}
+
+@media (max-width: 1180px) {
+  .react-calendar {
+    min-width: 360px;
+  }
+}
+
+@media (max-width: 800px) {
+  .react-calendar {
+    position: sticky;
+    top: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: var(--schedule-blue);
+  }
+}
+
+@media (max-width: 800px) {
+  .react-calendar__tile {
+    height: 50px;
+  }
+}

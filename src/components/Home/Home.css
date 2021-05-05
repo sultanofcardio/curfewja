@@ -20,7 +20,7 @@
 }
 
 .curfew-schedule {
-  background: #3777A6;
+  background: var(--schedule-blue);
 }
 
 .curfew-status {
