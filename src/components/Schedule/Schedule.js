@@ -10,7 +10,40 @@ import backBtn from '../../img/back.webp';
 import {curfews as allCurfews, findCurfews, TIME_ZONE} from "../../model/Curfew";
 import momentTz from "moment-timezone";
 
+/**
+ *
+ * @typedef {'Curfew'|'Movement'} EventType
+ */
+
 const HOURS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+
+/**
+ * Create a new Event component
+ * @param {number} hour
+ * @param {moment.Moment} moment
+ * @param {EventType} type
+ * @return {JSX.Element}
+ * @constructor
+ */
+const ScheduleEvent = ({time, type}) => {
+
+  const style = type === 'Curfew' ? styles.curfew : styles.movement
+
+  return (
+    <div className={`${styles.event} ${style}`}>
+      <span className={styles.hour}>{time}</span>
+      <span className={styles.eventType}>{type}</span>
+    </div>
+  )
+}
+
+const Attribution = ({className}) => (
+  <span className={className}>
+    <em>Design by <a href='https://www.instagram.com/shanesejohnsonthebrand/' target='_blank'
+                     rel='noreferrer'>@shanesejohnsonthebrand</a>
+    </em>
+  </span>
+)
 
 const Schedule = () => {
 
@@ -32,27 +65,9 @@ const Schedule = () => {
             return hourMoment.isBetween(it.start, it.end)
           })
 
-        if (curfew) {
-          return (
-            <>
-              <div className={`${styles.event} ${styles.curfew}`} key={'event' + hour}>
-                <span className={styles.hour}>{hourMoment.format('h a')}</span>
-                <span className={styles.eventType}>Curfew</span>
-              </div>
-              {/*<hr />*/}
-            </>
-          )
-        } else {
-          return (
-            <>
-              <div className={`${styles.event} ${styles.movement}`} key={'event' + hour}>
-                <span className={styles.hour}>{hourMoment.format('h a')}</span>
-                <span className={styles.eventType}>Free Movement</span>
-              </div>
-              {/*<hr />*/}
-            </>
-          )
-        }
+        return (
+          <ScheduleEvent time={hourMoment.format('h a')} type={curfew ? 'Curfew' : 'Movement'} key={'event' + hour}/>
+        )
       }
     )
 
@@ -61,11 +76,11 @@ const Schedule = () => {
 
   return (
     <div className={styles.root}>
-      <Link className={styles.outerBackLink} to='/'>
+      <Link className={styles.outerBackLink} key='outerBackLink' to='/'>
         <img src={backBtn} className={styles.backBtn} alt={'Github icon'}/>
       </Link>
       <nav className={styles.sidebar}>
-        <Link className={styles.innerBackLink} to='/'>
+        <Link className={styles.innerBackLink} key='innerBackLink' to='/'>
           <img src={backBtn} className={styles.backBtn} alt={'Github icon'}/>
         </Link>
         <GitHubIcon className={styles.ghIcon}/>
@@ -101,6 +116,7 @@ const Schedule = () => {
                     showFixedNumberOfWeeks={true}
                     calendarType='US'
                     tileClassName='calendar-tile'/>
+          <Attribution className={styles.calendarAttribution} />
         </section>
         <section className={styles.schedule}>
           <div className={styles.date}>
@@ -113,70 +129,11 @@ const Schedule = () => {
           <div className={styles.events}>
             {events}
           </div>
+          <Attribution className={styles.scheduleAttribution} />
         </section>
       </main>
     </div>
   )
-
-  //   <div className="schedule-holder">
-  // <div className="schedule">
-  // <div className='nav'>
-  // <Link className='logo-holder' to='/'>
-  // <ArrowLeft/>
-  // </Link>
-  // <span className="title">Curfew Schedule</span>
-  // </div>
-  // <span className="subtitle">Choose a day to see the schedule</span>
-  // <Calendar className='calendar'
-  //               inputRef={calendarRef}
-  //               value={date.toDate()}
-  //               minDate={allCurfews[0]?.start?.toDate()}
-  //               maxDate={allCurfews[allCurfews.length - 1]?.end?.toDate()}
-  //               onChange={d => {
-  //                 setDate(momentTz.parseZone(d.toISOString().replace('.000Z', '-05:00')))
-  //                 if (calendarRef) {
-  //                   calendarRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
-  //                 }
-  //               }}
-  //               showFixedNumberOfWeeks={true}
-  //               calendarType='US'
-  //               tileClassName='calendar-tile'/>
-  //     <span className="date">{date.format('dddd MMM Do, YYYY')}</span>
-  //     <div className='curfew-schedule'>
-  //       <div className='times'>
-  //         <div className='time'><span>1 am</span></div>
-  //         <div className='time'><span>2 am</span></div>
-  //         <div className='time'><span>3 am</span></div>
-  //         <div className='time'><span>4 am</span></div>
-  //         <div className='time'><span>5 am</span></div>
-  //         <div className='time'><span>6 am</span></div>
-  //         <div className='time'><span>7 am</span></div>
-  //         <div className='time'><span>8 am</span></div>
-  //         <div className='time'><span>9 am</span></div>
-  //         <div className='time'><span>10 am</span></div>
-  //         <div className='time'><span>11 am</span></div>
-  //         <div className='time'><span>12 pm</span></div>
-  //         <div className='time'><span>1 pm</span></div>
-  //         <div className='time'><span>2 pm</span></div>
-  //         <div className='time'><span>3 pm</span></div>
-  //         <div className='time'><span>4 pm</span></div>
-  //         <div className='time'><span>5 pm</span></div>
-  //         <div className='time'><span>6 pm</span></div>
-  //         <div className='time'><span>7 pm</span></div>
-  //         <div className='time'><span>8 pm</span></div>
-  //         <div className='time'><span>9 pm</span></div>
-  //         <div className='time'><span>10 pm</span></div>
-  //         <div className='time'><span>11 pm</span></div>
-  //         <div className='time'><span>12 am</span></div>
-  //       </div>
-  //       <div className='events'>
-  //         {events}
-  //       </div>
-  //     </div>
-  //   </div>
-  //   <GitHubIcon className='gh-icon'/>
-  // </div>
-  // )
 }
 
 export default Schedule;
