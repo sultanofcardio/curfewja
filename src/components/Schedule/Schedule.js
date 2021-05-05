@@ -76,33 +76,17 @@ const Schedule = () => {
 
   return (
     <div className={styles.root}>
-      <Link className={styles.outerBackLink} key='outerBackLink' to='/'>
-        <img src={backBtn} className={styles.backBtn} alt={'Github icon'}/>
-      </Link>
-      <nav className={styles.sidebar}>
-        <Link className={styles.innerBackLink} key='innerBackLink' to='/'>
-          <img src={backBtn} className={styles.backBtn} alt={'Github icon'}/>
-        </Link>
-        <GitHubIcon className={styles.ghIcon}/>
-        <ul className={styles.months}>
-          <li className={styles.month}>January</li>
-          <li className={styles.month}>February</li>
-          <li className={styles.month}>March</li>
-          <li className={styles.month}>April</li>
-          <li className={`${styles.month} ${styles.selected}`}>May</li>
-          <li className={styles.month}>June</li>
-          <li className={styles.month}>July</li>
-          <li className={styles.month}>August</li>
-          <li className={styles.month}>September</li>
-          <li className={styles.month}>October</li>
-          <li className={styles.month}>November</li>
-          <li className={styles.month}>December</li>
-        </ul>
-      </nav>
       <main className={styles.main}>
         <section className={styles.calendar}>
-          <h1>Curfew Schedule</h1>
-          <h3>Choose a day to see the schedule</h3>
+          <div className={styles.nav}>
+            <Link className={styles.backLink} to='/'>
+              <img src={backBtn} className={styles.backBtn} alt={'Github icon'}/>
+            </Link>
+            <div className={styles.headings}>
+              <h1>Curfew Schedule</h1>
+              <h3>Choose a day to see the schedule</h3>
+            </div>
+          </div>
           <Calendar inputRef={calendarRef}
                     value={date.toDate()}
                     minDate={allCurfews[0]?.start?.toDate()}

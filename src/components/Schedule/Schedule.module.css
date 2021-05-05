@@ -23,15 +23,16 @@
   align-items: center;
 }
 
-.outerBackLink {
-  display: none;
+.nav {
+  display: flex;
+  align-items: center;
 }
 
-.outerBackLink, .innerBackLink {
-  position: absolute;
-  top: 16px;
-  left: 32px;
-  align-self: flex-start;
+.headings {
+  margin-left: 32px;
+}
+
+.backLink {
 }
 
 .backBtn {
@@ -46,8 +47,15 @@
   margin-top: 70px;
 }
 
-.scheduleGhIcon, .calendarGhIcon {
+.scheduleGhIcon {
   display: none;
+}
+
+.calendarGhIcon {
+  display: flex;
+  width: 80%;
+  position: absolute;
+  bottom: 40px;
 }
 
 .months {
@@ -61,7 +69,7 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -94,7 +102,7 @@
   max-width: calc(1630px - var(--sidebar-width));
   min-height: min(100vh, 1080px);
   height: 800px;
-  padding: 32px;
+  padding: 16px 32px 16px;
 
   display: flex;
 }
@@ -104,7 +112,6 @@
   position: absolute;
   bottom: 0;
   width: 80%;
-  margin-top: 32px;
 }
 
 .calendarAttribution a,
@@ -127,13 +134,13 @@
   flex-direction: column;;
 }
 
-.calendar > h1 {
+.headings > h1 {
   font-weight: bold;
   font-size: 40pt;
   margin: 8px 0;
 }
 
-.calendar > h3 {
+.headings > h3 {
   font-size: 16pt;
   font-weight: normal;
   margin: 8px 0;
@@ -213,9 +220,6 @@
 }
 
 @media (max-width: 1500px) {
-  .sidebar {
-    display: none;
-  }
 
   .calendarGhIcon {
     display: flex;
@@ -224,13 +228,8 @@
     bottom: 32px;
   }
 
-  .outerBackLink {
-    display: unset;
-  }
-
   .main {
     width: 100vw;
-    padding: 78px 32px 32px;
   }
 }
 
@@ -248,6 +247,18 @@
 }
 
 @media (max-width: 1000px) {
+  .nav {
+    flex-direction: column;
+  }
+
+  .headings > h1 {
+    text-align: center;
+  }
+
+  .headings > h3 {
+    text-align: center;
+  }
+
   .main {
     padding-right: 0;
   }
@@ -255,28 +266,24 @@
 
 @media (max-width: 960px) {
 
-  .calendar > h1 {
-    text-align: center;
-  }
-
-  .calendar > h3 {
-    text-align: center;
-  }
-
   .main {
     padding-left: 8px;
     padding-right: 8px;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 824px) {
 
-  .calendar > h1 {
+  .nav {
+    justify-content: center;
+  }
+
+  .headings > h1 {
     padding-left: 8px;
     padding-right: 8px;
   }
 
-  .calendar > h3 {
+  .headings > h3 {
     padding-left: 8px;
     padding-right: 8px;
   }
@@ -285,7 +292,7 @@
     min-width: 360px;
     display: unset;
     height: fit-content;
-    padding: 78px 0 0;
+    padding: 0 0;
   }
 
   .calendarAttribution  {
@@ -336,12 +343,13 @@
 }
 
 @media (max-width: 500px) {
+
   .schedule {
     padding-left: 32px;
     padding-right: 32px;
   }
 
-  .outerBackLink {
+  .backLink {
     left: 16px;
   }
 
