@@ -6,21 +6,8 @@
   color: white;
   min-height: 100vh;
 
-  --sidebar-width: 288px;
+  --sidebar-width: 0;
   --current-color: #00FAF9;
-}
-
-.sidebar {
-  position: relative;
-  background: #001724;
-  max-width: var(--sidebar-width);
-  min-height: min(100vh, 1080px);
-  height: 800px;
-  padding: 16px 88px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .nav {
@@ -53,7 +40,7 @@
 
 .calendarGhIcon {
   display: flex;
-  width: 80%;
+  width: 93%;
   position: absolute;
   bottom: 40px;
 }
@@ -97,9 +84,9 @@
 }
 
 .main {
-  width: calc(100vw - var(--sidebar-width));
+  width: 100vw;
   min-width: 800px;
-  max-width: calc(1630px - var(--sidebar-width));
+  max-width: 1630px;
   min-height: min(100vh, 1080px);
   height: 800px;
   padding: 16px 32px 16px;
@@ -111,7 +98,7 @@
   text-align: center;
   position: absolute;
   bottom: 0;
-  width: 80%;
+  width: 93%;
 }
 
 .calendarAttribution a,
@@ -223,7 +210,6 @@
 
   .calendarGhIcon {
     display: flex;
-    width: 80%;
     position: absolute;
     bottom: 32px;
   }
