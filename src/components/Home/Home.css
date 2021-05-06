@@ -64,3 +64,9 @@
 
   cursor: pointer;
 }
+
+@media (max-width: 360px) {
+  .curfew-status {
+    font-size: 64px;
+  }
+}
