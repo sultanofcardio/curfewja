@@ -75,6 +75,11 @@
   font-size: 16pt;
   font-weight: bold;
   color: white;
+  flex-grow: 0.9 !important;
+}
+
+.react-calendar__navigation {
+  justify-content: center;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
