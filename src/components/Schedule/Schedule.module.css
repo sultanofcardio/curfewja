@@ -207,6 +207,12 @@
   color: #4DE3A4;
 }
 
+@media (max-height: 726px) {
+  .main {
+    min-height: 726px;
+  }
+}
+
 @media (max-width: 1500px) {
 
   .calendarGhIcon {
@@ -230,6 +236,12 @@
 
   .schedule {
     width: 60%;
+  }
+}
+
+@media (max-width: 1148px) {
+  .main {
+    min-height: 800px;
   }
 }
 
