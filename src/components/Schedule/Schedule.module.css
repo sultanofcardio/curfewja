@@ -17,6 +17,8 @@
 
 .headings {
   margin-left: 32px;
+  flex-grow: 0.7;
+  text-align: center;
 }
 
 .backLink {
