@@ -99,7 +99,7 @@
 
 @media (max-width: 1180px) {
   .react-calendar {
-    min-width: 360px;
+    min-width: 320px;
   }
 }
 
@@ -121,5 +121,11 @@
 
   .react-calendar__tile {
     height: 50px;
+  }
+}
+
+@media (max-width: 360px) {
+  .react-calendar__tile {
+    height: 35px;
   }
 }

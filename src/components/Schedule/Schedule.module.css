@@ -136,7 +136,7 @@
 
 .schedule {
   width: 35%;
-  min-width: 360px;
+  min-width: 320px;
   background: #021F35;
   border-radius: 50px;
   margin: 0 24px;
@@ -280,7 +280,7 @@
   }
 
   .main {
-    min-width: 360px;
+    min-width: 320px;
     display: unset;
     height: fit-content;
     padding: 0;
@@ -305,6 +305,7 @@
     display: flex;
     margin-top: 32px;
     justify-content: center;
+    text-align: center;
   }
 
   .calendar {
