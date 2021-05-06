@@ -103,6 +103,13 @@
   }
 }
 
+@media (max-width: 984px) {
+  .react-calendar {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
 @media (max-width: 800px) {
   .react-calendar {
     position: sticky;
@@ -111,9 +118,7 @@
     padding-right: 8px;
     background: var(--schedule-blue);
   }
-}
 
-@media (max-width: 800px) {
   .react-calendar__tile {
     height: 50px;
   }

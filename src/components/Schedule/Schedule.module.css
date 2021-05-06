@@ -87,8 +87,9 @@
   width: 100vw;
   min-width: 800px;
   max-width: 1630px;
-  min-height: min(100vh, 1080px);
-  height: 800px;
+  min-height: min(100vh,800px);
+  height: 100vh;
+  max-height: min(100vh, 800px);
   padding: 16px 32px 16px;
 
   display: flex;
@@ -250,15 +251,7 @@
   }
 }
 
-@media (max-width: 960px) {
-
-  .main {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-}
-
-@media (max-width: 824px) {
+@media (max-width: 984px) {
 
   .nav {
     justify-content: center;
@@ -278,7 +271,8 @@
     min-width: 360px;
     display: unset;
     height: fit-content;
-    padding: 0 0;
+    padding: 0;
+    max-height: unset;
   }
 
   .calendarAttribution  {
