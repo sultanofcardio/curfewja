@@ -32,6 +32,7 @@
   color: white;
   height: 60px;
   cursor: pointer;
+  margin: 0;
 }
 
 .react-calendar__tile.react-calendar__tile--now {
