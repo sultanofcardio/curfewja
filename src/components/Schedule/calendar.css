@@ -1,7 +1,7 @@
 .react-calendar {
   min-width: 600px;
   width: 100%;
-  background: transparent;
+  background: var(--schedule-blue);
   border: none;
   margin: 40px 0 0;
 }
