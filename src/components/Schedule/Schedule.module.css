@@ -226,6 +226,10 @@
   .main {
     width: 100vw;
   }
+
+  .headings {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 1180px) {
