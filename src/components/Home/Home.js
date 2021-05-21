@@ -22,7 +22,7 @@ function Home() {
       <span className="curfew-status">{curfewData.status.title}</span>
       <Countdown />
       <span className="curfew-end-time">{curfewData.detail}</span>
-      <Link to="/schedule" className="curfew-schedule-btn">Curfew schedule</Link>
+      <Link to="/schedule" className="curfew-schedule-btn">View schedule</Link>
       <GitHubIcon/>
     </div>
   );
