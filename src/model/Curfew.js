@@ -172,8 +172,7 @@ export const curfews = [
   new Curfew("2021-05-22T18:00:00-05:00", "2021-05-23T05:00:00-05:00"),
 
   // Week of May 23 - May 29
-  new Curfew("2021-05-23T14:00:00-05:00", "2021-05-24T05:00:00-05:00"),
-  new Curfew("2021-05-24T05:00:00-05:00", "2021-05-25T05:00:00-05:00"),
+  new Curfew("2021-05-23T14:00:00-05:00", "2021-05-25T05:00:00-05:00"),
   new Curfew("2021-05-25T20:00:00-05:00", "2021-05-26T05:00:00-05:00"),
   new Curfew("2021-05-26T20:00:00-05:00", "2021-05-27T05:00:00-05:00"),
   new Curfew("2021-05-27T20:00:00-05:00", "2021-05-28T05:00:00-05:00"),
@@ -194,7 +193,8 @@ export const curfews = [
  */
 export function findCurfews(day) {
   return curfews.filter(curfew => {
-    return curfew.start.isSame(day, 'day') || curfew.end.isSame(day, 'day')
+    return curfew.start.isSame(day, 'day') || curfew.end.isSame(day, 'day') ||
+      (curfew.start.isBefore(day, 'day') && curfew.end.isAfter(day, 'day'))
   })
 }
 
