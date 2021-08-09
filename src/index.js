@@ -5,6 +5,7 @@ import './index.css';
 import Home from './components/Home/Home';
 import {ContextProvider} from "./util/context";
 import Schedule from "./components/Schedule/Schedule";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,3 +24,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
