@@ -1,0 +1,72 @@
+{
+  "masterPicture": "../src/img/icon.svg",
+  "iconsPath": "/",
+  "design": {
+    "ios": {
+      "pictureAspect": "backgroundAndMargin",
+      "backgroundColor": "#012540",
+      "margin": "14%",
+      "assets": {
+        "ios6AndPriorIcons": false,
+        "ios7AndLaterIcons": false,
+        "precomposedIcons": false,
+        "declareOnlyDefaultIcon": true
+      },
+      "appName": "Curfew JA"
+    },
+    "desktopBrowser": {
+      "design": "background",
+      "backgroundColor": "#012540",
+      "backgroundRadius": 0.45,
+      "imageScale": 0.8
+    },
+    "windows": {
+      "pictureAspect": "noChange",
+      "backgroundColor": "#012540",
+      "onConflict": "override",
+      "assets": {
+        "windows80Ie10Tile": false,
+        "windows10Ie11EdgeTiles": {
+          "small": false,
+          "medium": true,
+          "big": false,
+          "rectangle": false
+        }
+      },
+      "appName": "Curfew JA"
+    },
+    "androidChrome": {
+      "pictureAspect": "noChange",
+      "themeColor": "#012540",
+      "description": "Check the current curfew schedule in Jamaica",
+      "manifest": {
+        "name": "Curfew JA",
+        "startUrl": ".",
+        "display": "standalone",
+        "orientation": "notSet",
+        "onConflict": "override",
+        "declared": true
+      },
+      "assets": {
+        "legacyIcon": false,
+        "lowResolutionIcons": false
+      }
+    },
+    "safariPinnedTab": {
+      "pictureAspect": "blackAndWhite",
+      "threshold": 28.75,
+      "themeColor": "#012540"
+    }
+  },
+  "settings": {
+    "scalingAlgorithm": "Mitchell",
+    "errorOnImageTooSmall": false,
+    "readmeFile": false,
+    "htmlCodeFile": true,
+    "usePathAsIs": false
+  },
+  "versioning": {
+    "paramName": "v",
+    "paramValue": "2.0"
+  }
+}
