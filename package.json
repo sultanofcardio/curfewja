@@ -2,6 +2,7 @@
   "name": "curfewja",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
@@ -13,8 +14,8 @@
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node prepare-data.js && react-scripts start",
+    "build": "node prepare-data.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
