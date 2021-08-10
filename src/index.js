@@ -25,4 +25,9 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorkerRegistration.register();
+serviceWorkerRegistration.register({
+  onUpdate(registration) {
+    registration.update()
+    window.location.reload()
+  }
+});
