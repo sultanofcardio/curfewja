@@ -12,21 +12,37 @@
       "src": "/android-chrome-512x512.png?v=2.0",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/icon-1024-maskable.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
     {
       "name": "Current Status",
-      "url": "/"
+      "url": "/",
+      "icons": [{
+        "src": "/hourglass-96x96.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      }]
     },
     {
       "name": "Schedule",
-      "url": "/schedule"
+      "url": "/schedule",
+      "icons": [{
+        "src": "/calendar-96x96.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      }]
     }
   ],
   "start_url": ".",
   "scope": "/",
-  "background_color": "#012540",
+  "background_color": "#E34D4D",
   "display": "standalone",
-  "theme_color": "#012540"
+  "theme_color": "#E34D4D"
 }
