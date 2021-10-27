@@ -25,4 +25,5 @@ yarn-error.log*
 .idea/
 out/
 public/data.json
+public/last-updated.txt
 %PUBLIC_URL%

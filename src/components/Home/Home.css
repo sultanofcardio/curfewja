@@ -65,6 +65,11 @@
   cursor: pointer;
 }
 
+.curfew-info-icon {
+  margin-top: 24px;
+  width: 32px;
+}
+
 @media (max-width: 360px) {
   .curfew-status {
     font-size: 64px;
