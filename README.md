@@ -1,6 +1,6 @@
 # Curfew JA
 
-Live demo: https://curfewja.com
+Live demo: https://curfewja.netlify.app
 
 ## About
 
